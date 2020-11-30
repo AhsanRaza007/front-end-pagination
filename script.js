@@ -82,8 +82,7 @@ function run(){
 
     function buildButtons(pages){
         buttonWrapper.innerHTML = '';
-
-        let maxLeft = (state.page - Math.floor(state.window/2));
+        let maxLeft = parseInt(state.page) - parseInt(Math.floor(state.window/2));
         let maxRight = parseInt(state.page) + parseInt(Math.floor(state.window/2));
         
         if(maxLeft<=1){
@@ -96,7 +95,8 @@ function run(){
             maxRight = pages;
         }
 
-        if(state.page !== 1){
+        if(state.page != 1){
+            console.log(state.page);
             let  btn = document.createElement('button');
             btn.className = 'btn btn-sm btn-info';
             btn.setAttribute('id', 'first');
@@ -118,12 +118,13 @@ function run(){
         if(state.page != pages){
             let  btn = document.createElement('button');
             btn.className = 'btn btn-sm btn-info';
-            btn.setAttribute('id', 'first');
+            btn.setAttribute('id', 'last');
             btn.setAttribute('value', pages);
             btn.innerHTML = 'last&#187;';
             buttonWrapper.appendChild(btn);
         }
     }
+
     buttonWrapper.addEventListener('click', e=>{
         if(!e.target.closest('button')) return;
         state.page = e.target.value;
